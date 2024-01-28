@@ -48,10 +48,12 @@ const Landing = () => (
       <AprendeSentidosPage />
       <Subscribe />
     <Footer />
+    <Customization />
   </Page>
 );
 
 Landing.getLayout = function getLayout(page: ReactElement) {
+  console.log("this is my page => " + page)
   return <Layout variant="minimal">{page}</Layout>;
 };
 
