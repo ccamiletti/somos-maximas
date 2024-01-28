@@ -37,16 +37,13 @@ const SecondWrapper = styled('div')(({ theme }) => ({
 
 const Landing = () => (
   <Page title="Welcome">
-      <AppBar />
-      <Header />
+    <AppBar />
+    <Header />
       <Feature />
-      <Demos />
-    {/* <SecondWrapper>
-      <Layouts />
-    </SecondWrapper> */}
-      <KeyFeature />
-      <AprendeSentidosPage />
-      <Subscribe />
+    <Demos />
+    <KeyFeature />
+    <AprendeSentidosPage />
+    <Subscribe />
     <Footer />
     <Customization />
   </Page>

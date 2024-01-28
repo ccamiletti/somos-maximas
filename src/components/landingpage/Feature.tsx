@@ -18,7 +18,6 @@ import SpeedTwoToneIcon from '@mui/icons-material/SpeedTwoTone';
 const FeaturePage = () => {
   const theme = useTheme();
   return (
-    <div style={{ paddingTop: '50px'}}>
     <Container sx={{ textAlign: 'center'}}>
       <Grid container sx={{ textAlign: 'center'}} >
         <Grid item xs={12} padding={'15px'}>
@@ -140,7 +139,6 @@ const FeaturePage = () => {
         </Grid>
       </Grid>
     </Container>
-    </div>
   );
 };
 

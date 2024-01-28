@@ -1,8 +1,9 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 
 import YouTube from 'react-youtube';
+import VideoIframe from './VideoIframe';
 
 
 // =============================|| LANDING - FEATURE PAGE ||============================= //
@@ -45,25 +46,25 @@ const AprendeSentidosPage = () => {
 
         <Grid item sx={{ textAlign: 'center'}} width={'100%'} paddingTop={'15px;'}>
           <Grid alignContent="center" sx={{ textAlign: 'center'}} spacing={2}>
-          <YouTube videoId="ElFJ1qcl74U" 
-            opts={opts} /> 
+          <VideoIframe videoId="ElFJ1qcl74U" title={"videoTitle"} /> 
           </Grid>
         </Grid>
 
-        <Grid item xs={12} style={{padding: '80px 220px 10px 220px'}}>
-          <Grid container spacing={1} sx={{ mb: 2 }}>
-            <Grid item xs={12}>
-              <Typography variant="h2" component="div" sx={{ fontSize: '15px', lineHeight: '2em', letterSpacing: '2px', color: '#8C89A2' }}>
-              DESCUBRE NUESTRA METODOLOGÍA
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
+        <Grid item xs={12} style={{paddingTop: '80px'}}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+          <Grid container direction="column" alignItems="center" justifyContent="center" >
+            <Grid item xs={12} width={'50%'}>
               <Typography variant="body2" sx={{ fontSize: '34px', color: '#3F3A64' }} display="inline">
               Breve Testimonio de <Typography display="inline" variant="body2" sx={{ fontSize: '34px', color: '#d40050' }}>
               Estudiantes</Typography> que desarrollan los cursos
               </Typography>
             </Grid>
           </Grid>
+          </Box>
         </Grid>
 
 

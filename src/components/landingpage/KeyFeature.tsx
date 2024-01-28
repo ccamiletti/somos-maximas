@@ -5,6 +5,7 @@ import Image from 'next/image';
 // project imports
 import FadeInWhenVisible from './Animation';
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import { gridSpacing } from 'store/constant';
 
 // ============================|| LANDING - KEY FEATURE PAGE ||============================ //
 
@@ -29,7 +30,13 @@ const KeyFeaturePage = () => {
 </svg>
 
     <Container>
-    <Grid container>
+    <Grid
+        container
+        alignItems="center"
+        justifyContent="space-between"
+        spacing={gridSpacing}
+        sx={{ mt: { xs: 10, sm: 6, md: 10.75 }, mb: { xs: 2.5, md: 10 } }}
+      >
       <Grid item xs={12} padding={'15px'} spacing={1} sx={{ textAlign: 'center'}}>
           <Grid item xs={12}>
             <Typography variant="h2" component="div" sx={{ fontSize: '15px', lineHeight: '2em', letterSpacing: '2px', color: '#8C89A2' }}>

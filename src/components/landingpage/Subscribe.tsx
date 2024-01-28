@@ -1,6 +1,6 @@
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
-import { Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 
 // project imports
 import MailerSubscriber from '../maintenance/ComingSoon/ComingSoon1/MailerSubscriber';
@@ -40,8 +40,6 @@ const SubscribeWrapper = styled('div')(({ theme }) => {
 });
 
 const SubscribeCard = styled('div')(({ theme }) => ({
-  background: theme.palette.mode === 'dark' ? theme.palette.dark.dark : '#FFFFFF',
-  boxShadow: '0px 0px 50px rgba(33, 150, 243, 0.2)',
   borderRadius: '20px',
   padding: '100px 75px',
   [theme.breakpoints.down('md')]: {
@@ -61,16 +59,28 @@ const Subscribe = () => {
   const theme = useTheme();
 
   return (
-        <Grid container spacing={4} style={{padding: '100px 500px 100px 500px'}}>
-          <Grid item sm={12} textAlign={'center'}>
-            <Typography variant="h1" component="div" sx={{ [theme.breakpoints.down('md')]: { fontSize: '1.125rem' } }}>
-            Regístrate en nuestro Newsletter
-            </Typography>
-          </Grid>
-          <Grid item sm={12}>
-            <MailerSubscriber />
-          </Grid>
-        </Grid>
+    <Container sx={{ textAlign: 'center', paddingTop:'100px', paddingBottom:'100px' }}>
+    <Grid item xs={12} style={{paddingTop: '0px'}}>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+    <Grid container direction="column" alignItems="center" justifyContent="center" spacing={4}>
+      <Grid item xs={12}>
+        <Typography variant="h1" sx={{ [theme.breakpoints.down('md')]: { fontSize: '1.125rem' } }}>
+                   Regístrate en nuestro Newsletter
+        </Typography>
+      </Grid>
+      <Grid item xs={12} width={'50%'}>
+        <MailerSubscriber />
+      </Grid>
+    </Grid>
+    </Box>
+  </Grid>
+  </Container>
+
+
   );
 };
 
