@@ -89,6 +89,7 @@ const Breadcrumbs = ({
   };
 
   useEffect(() => {
+    console.log('navigation => ' + JSON.stringify(navigation));
     navigation?.items?.map((menu: NavItemType | NavItemTypeObject, index: number) => {
       if (menu.type && menu.type === 'group') {
         getCollapse(menu as { children: NavItemType[]; type?: string });

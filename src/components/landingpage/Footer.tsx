@@ -61,7 +61,9 @@ const FooterPage = () => {
                   Maximas
               </Grid>
               <Grid item paddingTop={'25px;'}>
+                <Typography component={Link} href="/forms/forms-validation" >
                 Tilburg Nederland
+                </Typography>
               </Grid>
               <Grid item paddingTop={'18px;'}>
                 info@somosmaximas.com

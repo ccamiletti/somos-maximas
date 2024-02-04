@@ -3,6 +3,12 @@
   "default": "Default",
   "analytics": "Analytics",
 
+  "maximas": "Maximas",
+  "quienesSomos": "Quienes Somos",
+  "loQueHacemos": "Lo que Hacemos",
+  "tuMotivacion": "Tu Motivacion",
+
+
   "widget": "Widget",
   "statistics": "Statistics",
   "data": "Data",

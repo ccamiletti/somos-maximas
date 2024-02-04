@@ -208,7 +208,6 @@ const NavGroup = ({ item, lastItem, remItems, lastItemId }: NavGroupProps) => {
       ) : (
         <List>
           <ListItemButton
-            selected={selectedID === currentItem.id}
             sx={{
               borderRadius: `${borderRadius}px`,
               p: 1,

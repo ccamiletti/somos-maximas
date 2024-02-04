@@ -19,7 +19,8 @@ import {
   Typography,
   useScrollTrigger,
   OutlinedInput,
-  InputAdornment
+  InputAdornment,
+  useMediaQuery
 } from '@mui/material';
 
 // project imports
@@ -29,6 +30,14 @@ import Logo from '../Logo';
 import { IconAdjustmentsHorizontal, IconBook, IconCreditCard, IconDashboard, IconHome2, IconSearch } from '@tabler/icons';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchSection from 'layout/MainLayout/Header/SearchSection';
+import { NavItemType } from 'types';
+import landingMenuItems from 'layout/Landing/MenuItem/landingMenuItem';
+import { LAYOUT_CONST } from 'constant';
+import useConfig from 'hooks/useConfig';
+import { HORIZONTAL_MAX_ITEM } from 'config';
+import NavGroup from 'layout/MainLayout/MenuList/NavGroup';
+import NavItem from 'layout/MainLayout/MenuList/NavItem';
+import { FormattedMessage } from 'react-intl';
 
 // elevation scroll
 interface ElevationScrollProps {
@@ -58,7 +67,45 @@ function ElevationScroll({ children, window }: ElevationScrollProps) {
 
 // ==============================|| MINIMAL LAYOUT APP BAR ||============================== //
 
-const AppBar = ({ ...others }) => {
+const MenuBar = ({ ...others }) => {
+
+  const theme = useTheme();
+  const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+
+  const { layout } = useConfig();
+
+  // last menu-item to show in horizontal menu bar
+  const lastItem = layout === LAYOUT_CONST.HORIZONTAL_LAYOUT && !matchDownMd ? HORIZONTAL_MAX_ITEM : null;
+
+  let lastItemIndex = landingMenuItems.items.length - 1;
+  let remItems: NavItemType[] = [];
+  let lastItemId: string;
+
+  if (lastItem && lastItem < landingMenuItems.items.length) {
+    lastItemId = landingMenuItems.items[lastItem - 1].id!;
+    lastItemIndex = lastItem - 1;
+    remItems = landingMenuItems.items.slice(lastItem - 1, landingMenuItems.items.length).map((item) => ({
+      title: item.title,
+      elements: item.children
+    }));
+  }
+
+  const navItems = landingMenuItems.items.slice(0, lastItemIndex + 1).map((item) => {
+    
+    switch (item.type) {
+      case 'group':
+        return <NavGroup key={item.id} item={item} lastItem={lastItem!} remItems={remItems} lastItemId={lastItemId} />;
+      case 'item':
+        return <NavItem key={item.id} item={item} level={1} parentId={'0'} />;  
+      default:
+        return (
+          <Typography key={item.id} variant="h6" color="error" align="center">
+            Menu Items Error
+          </Typography>
+        );
+    }
+  });
+
   const [drawerToggle, setDrawerToggle] = React.useState<boolean>(false);
   /** Method called on multiple components with different event types */
   const drawerToggler = (open: boolean) => (event: any) => {
@@ -66,6 +113,14 @@ const AppBar = ({ ...others }) => {
       return;
     }
     setDrawerToggle(open);
+  };
+
+  const linkSX = {
+    display: 'flex',
+    color: 'grey.900',
+    textDecoration: 'none',
+    alignContent: 'center',
+    alignItems: 'center'
   };
 
   return (
@@ -77,20 +132,8 @@ const AppBar = ({ ...others }) => {
               <Logo />
             </Typography>
             <Stack direction="row" sx={{ display: { xs: 'none', sm: 'block' } }} spacing={2}>
-              <Button color="inherit" component={Link} href="#">
-                Home
-              </Button>
-              <Button color="inherit" component={Link} href="login" target="_blank">
-                Maximas
-              </Button>
-              <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank">
-                Cursos
-              </Button>
-              <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank">
-                Blog
-              </Button>
-              <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank">
-                Usuario
+              <Button color="inherit">
+                <>{navItems}</>
               </Button>
               <OutlinedInput
                 id="input-search-list-style1"
@@ -110,48 +153,12 @@ const AppBar = ({ ...others }) => {
               <Drawer anchor="top" open={drawerToggle} onClose={drawerToggler(false)}>
                 {drawerToggle && (
                   <Box sx={{ width: 'auto' }} role="presentation" onClick={drawerToggler(false)} onKeyDown={drawerToggler(false)}>
-                    <List>
-                      <Link style={{ textDecoration: 'none' }} href="#" target="_blank">
-                        <ListItemButton component="a">
-                          <ListItemIcon>
-                            <IconHome2 />
-                          </ListItemIcon>
-                          <ListItemText primary="Home" />
-                        </ListItemButton>
-                      </Link>
-                      <Link style={{ textDecoration: 'none' }} href="/login" target="_blank">
-                        <ListItemButton component="a">
-                          <ListItemIcon>
-                            <IconDashboard />
-                          </ListItemIcon>
-                          <ListItemText primary="Dashboard" />
-                        </ListItemButton>
-                      </Link>
-                      <Link style={{ textDecoration: 'none' }} href="https://codedthemes.gitbook.io/berry" target="_blank">
-                        <ListItemButton component="a">
-                          <ListItemIcon>
-                            <IconBook />
-                          </ListItemIcon>
-                          <ListItemText primary="Documentation" />
-                        </ListItemButton>
-                      </Link>
-                      <Link
-                        style={{ textDecoration: 'none' }}
-                        href="https://material-ui.com/store/items/berry-react-material-admin/"
-                        target="_blank"
-                      >
-                        <ListItemButton component="a">
-                          <ListItemIcon>
-                            <IconCreditCard />
-                          </ListItemIcon>
-                          <ListItemText primary="Purchase Now" />
-                        </ListItemButton>
-                      </Link>
-                    </List>
+                     <>{navItems}</>
                   </Box>
                 )}
               </Drawer>
-            </Box>
+            </Box>            
+
           </Toolbar>
         </Container>
       </MuiAppBar>
@@ -159,4 +166,4 @@ const AppBar = ({ ...others }) => {
   );
 };
 
-export default AppBar;
+export default MenuBar;

@@ -199,7 +199,6 @@ const NavItem = ({ item, level, parentId }: NavItemProps) => {
             py: 1,
             pl: 2
           }}
-          selected={isSelected}
           onClick={() => itemHandler(item.id!)}
         >
           <ListItemIcon

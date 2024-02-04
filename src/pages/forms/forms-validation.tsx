@@ -12,6 +12,7 @@ import RadioGroupForms from 'components/forms/forms-validation/RadioGroupForms';
 import CheckboxForms from 'components/forms/forms-validation/CheckboxForms';
 import SelectForms from 'components/forms/forms-validation/SelectForms';
 import { gridSpacing } from 'store/constant';
+import LandingLayout from 'layout/Landing';
 
 // ==============================|| FORMS VALIDATION - FORMIK ||============================== //
 
@@ -38,7 +39,7 @@ const FormsValidation = () => (
 );
 
 FormsValidation.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <LandingLayout>{page}</LandingLayout>
 };
 
 export default FormsValidation;

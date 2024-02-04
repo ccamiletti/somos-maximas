@@ -5,22 +5,23 @@ import { Container, Grid, Typography } from '@mui/material';
 // project imports
 import FadeInWhenVisible from './Animation';
 import SubCard from 'ui-component/cards/SubCard';
-import Avatar from 'ui-component/extended/Avatar';
 import { gridSpacing } from 'store/constant';
-
-// assets
-import PaletteTwoToneIcon from '@mui/icons-material/PaletteTwoTone';
-import ReorderTwoToneIcon from '@mui/icons-material/ReorderTwoTone';
-import SpeedTwoToneIcon from '@mui/icons-material/SpeedTwoTone';
 
 // =============================|| LANDING - FEATURE PAGE ||============================= //
 
 const FeaturePage = () => {
   const theme = useTheme();
   return (
-    <Container sx={{ textAlign: 'center'}}>
-      <Grid container sx={{ textAlign: 'center'}} >
-        <Grid item xs={12} padding={'15px'}>
+    <Container >
+      <Grid
+        container
+        textAlign='center'
+        alignItems="center"
+        justifyContent="space-between"
+        spacing={gridSpacing}
+        sx={{ mt: { xs: 10, sm: 6, md: 10.75 }, mb: { xs: 2.5, md: 10 } }}
+      >
+        <Grid item xs={12}>
           <Grid container spacing={1} sx={{ mb: 2 }}>
             <Grid item xs={12}>
               <Typography variant="h2" component="div" sx={{ fontSize: '15px', lineHeight: '2em', letterSpacing: '2px', color: '#8C89A2' }}>
@@ -36,7 +37,7 @@ const FeaturePage = () => {
           </Grid>
         </Grid>
 
-        <Grid item >
+        <Grid item xs={12}>
           <Grid container justifyContent="center" spacing={2} >
             <Grid item md={3} >
               <FadeInWhenVisible>

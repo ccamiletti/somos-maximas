@@ -9,48 +9,58 @@ import Page from 'components/ui-component/Page';
 import Header from 'components/landingpage/Header';
 import Feature from 'components/landingpage/Feature';
 import Demos from 'components/landingpage/Demos';
-import Layouts from 'components/landingpage/Layouts';
 import KeyFeature from 'components/landingpage/KeyFeature';
-import Subscribe from 'components/landingpage/Subscribe';
-import Footer from 'components/landingpage/Footer';
-import Customization from 'layout/Customization';
-import AppBar from 'ui-component/extended/AppBar';
+
 import AprendeSentidosPage from 'components/landingpage/AprendeSentidos';
 
 const HeaderWrapper = styled('div')(({ theme }) => ({
-  paddingTop: 10,
+  paddingTop: 0,
   overflowX: 'hidden',
   overflowY: 'clip',
   [theme.breakpoints.down('md')]: {
-    paddingTop: 42
+    paddingTop: 0
   }
 }));
 
 const SecondWrapper = styled('div')(({ theme }) => ({
-  paddingTop: 80,
+  paddingTop: 0,
   [theme.breakpoints.down('md')]: {
-    paddingTop: 60
+    paddingTop: 0
   }
 }));
 
 // =============================|| LANDING MAIN ||============================= //
 
 const Landing = () => (
+  // <Page title="Welcome">
+  //   <Header />
+  //     <Feature />
+  //   <Demos />
+  //   <KeyFeature />
+  //   <AprendeSentidosPage />
+  //   <Subscribe />
+  //   <Customization />
+  // </Page>
   <Page title="Welcome">
-    <AppBar />
-    <Header />
+    <HeaderWrapper id="home">
+      <Header />
+    </HeaderWrapper>
+    <SecondWrapper>
       <Feature />
-    <Demos />
-    <KeyFeature />
+    </SecondWrapper>
+    <SecondWrapper>
+      <Demos />
+    </SecondWrapper>
+    <SecondWrapper>
+      <KeyFeature />
+    </SecondWrapper>
+    <SecondWrapper>
     <AprendeSentidosPage />
-    <Subscribe />
-    <Footer />
-    <Customization />
+    </SecondWrapper>
   </Page>
 );
 
 Landing.getLayout = function getLayout(page: ReactElement) {
-  console.log("this is my page => " + page)
   return <Layout variant="minimal">{page}</Layout>;
 };
 
